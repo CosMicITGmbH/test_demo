@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Main Page</title>
+</head>
+<body ng-app="demo">
+
+	<div class="float-container">
+	
+	  <div class="float-child" >
+	    <div class="workscreenimage" style="display: none;background: url(../css/app/image4.png) no-repeat 50% 0%;background-color: white;width: 100%;height: 100%;">
+	    </div>
+	    <div class="loginscreenimage" style="background: url(../css/app/image1.png) no-repeat 50% 0%;background-color: white;width: 100%;height: 100%;">
+	    </div>    
+	  </div>
+	  
+	  <div class="float-child">
+	    	<div class="container" ng-controller="UserController">
+				<div class="mainsection">
+					<div class="data">
+					<div class="row row1">
+						<div
+							class="is-flex is-flex-direction-row is-justify-content-center field"
+							data-v-e36bfbb4="">
+							<div class="happy-logo" data-v-e36bfbb4="">
+								<img width="390" height="225"
+									src="https://www.salesforce.com/news/wp-content/uploads/sites/3/2021/05/Salesforce-logo.jpg"
+									data-v-e36bfbb4="">
+							</div>
+						</div>
+						<div>
+						<p style="font-size: x-large;font-weight: 400;">Log in with Salesforce</p>
+						</div>
+						<br>
+						<p>LOGIN TYPE</p><br><br> 
+						<select ng-model="domain" style="border-color: #ddd;border-radius: 4px;"
+							id="orgtype" ng-options="key as value for (key , value) in domains"></select>
+		
+					</div>
+		
+					<div class="row row2" style="display: none;">
+						<label>My Domain</label><br> <input type="text"
+							ng-model="mydomain" class="input-sm custom-width spacing"
+							placeholder="Enter Custom Domain Name" />
+		
+					</div>
+		
+					<div class="row row3">
+		
+						<p>
+							<!-- a href="https://login.salesforce.com/services/oauth2/authorize?client_id=3MVG9Y6d_Btp4xp7xxXFOrwzsIK5ZcRR4GPpYLoYFeyYOsfV6wLEcre7lJXmXmOfze__RT2C6xoa.7c2zjg0L&redirect_uri=https://localhost:8080/oauth2/callback&response_type=code" >connect salesforce</a -->
+							<!--  a ng-hide="{{hasSession}}" href="../oauth2/sflogin?env=prod&customdomain=1" >sflogin</a -->
+						</p>
+						<button class="btn button is-info loginbutton" ng-click="loginSF()" >Log In
+						</button>
+					</div>
+		
+					<div class="row row4 pageheader" style="display: none;">
+						<label style="font-size: large;font-weight: bold;">Logged into following instance </label> <br> <i
+							style="color: #15a6eb;">{{session.instance_url}}</i> <br> <u>
+							<!--  a ng-click="clearSession()"
+							style="color: black; font-style: italic; font-size: smaller; cursor: pointer;">Clear
+								Session</a -->
+							<button ng-click="clearSession()" class="clearsession btn-sm btn-info">Clear Session</button>
+						</u> <br> <br>
+					</div>
+		
+					<div class="row row5" style="display: none;">
+						<label>Select SObject from the below List</label><br> <select
+							ng-model="selectedSobject"
+							ng-options="key as value for (key , value) in sobjectdata"></select>
+						<br> <i id="loadingSobjets" class="loader"
+							style="color: red; display: none; font-size: 10px">Fetching
+							sObject from
+							Org&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>
+						<br> 
+						<div class="section">
+						<a
+							href="{{session.instance_url}}/lightning/setup/ObjectManager/new"
+							target="_BLANK"
+							style="color: black; font-style: italic; font-size: smaller; cursor: pointer;">Create
+							new sObject</a>After creating the sObject kindly reload the
+						page to get the new sObject reflected in the list
+						</div>
+						<br>
+						<br> 
+						<div class="section">
+						<label>Enter Field Names</label>
+						<textarea rows="10" type="text" ng-model="fields"
+							class="input-sm custom-width spacing"
+							placeholder="Use Seprator to separate fields">
+		       			</textarea>
+		       			</div>
+						<br>
+						
+						<div style="width: 385px;margin: 0 auto;">
+							<div
+								style="float: left; margin-right: 10px;">
+								<label style="float: left;">DataType</label><br> <select
+									style="width: 115px;" ng-model="ftype" id="ftype"
+									ng-change="toggleLenFields()" placeholder="Select Field Type"
+									ng-options="key as value for (key , value) in ftypeOptions"></select>
+		
+							</div>
+							<div style="width: 25%; float: left; margin-right: 10px;">
+								<label style="float: left;">Separator</label><br> <select
+									style="width: 100px; margin-bottom: 5px;" ng-model="seprator"
+									id="seprator" placeholder="Select Field Seprator"
+									ng-options="key as value for (key , value) in sepratorList"></select>
+							</div>
+							<div style="float: left;" id="flendiv">
+								<label style="float: left;">Field Length</label><br> 
+								<input
+									type="text" id="flen" ng-model="flen"
+									class="input-sm custom-width spacing"
+									style="width: 140px; height: 37px;border: 1px solid #cccccc;"
+									placeholder="Enter Field Length"></input> 
+									<input type="text"
+									id="flen1" ng-model="flen1" class="input-sm custom-width spacing"
+									style="display: none; width: 70px; height: 37px; margin-left: 0px; float: left; margin-top: 0px;border: 1px solid #cccccc;"
+									placeholder="Number"></input> 
+									<input type="text" id="flen2"
+									ng-model="flen2" class="input-sm custom-width spacing"
+									style="display: none; width: 65px; height: 37px; margin-top: 0px;border: 1px solid #cccccc;"
+									placeholder="Decimal"></input>
+							</div>
+						</div>
+		
+						<div id="picklist" class="section" style="display: none">
+							<label >Picklist
+								Values</label>
+							<textarea rows="10" type="text" ng-model="picklistValues"
+								class="input-sm custom-width spacing"
+								placeholder="Use Seprator to separate fields">
+		        			</textarea>
+						</div>
+						<div class="section" >
+							<label >Decription</label>
+							<textarea type="text" ng-model="description"
+								class="input-sm custom-width spacing"
+								placeholder="Enter Description">
+		       				</textarea>
+						</div>
+						<div class="section">
+							<label >Helptext</label>
+							<textarea type="text" ng-model="helptext"
+								class="input-sm custom-width spacing" placeholder="Enter Helptext">
+		       				</textarea>
+						</div>
+						<div class="section">
+							<label >Default
+								Value</label>
+								<input type="text" style="width: 100%;border: 1px solid #cccccc;"
+								ng-model="defaultvalue" class="input-sm custom-width spacing"
+								placeholder="Enter Default Value"> </input>
+						</div>
+						<br>
+						<br>
+						<br>
+						<button ng-click="refreshPage()" class="btn btn-sm btn-info" style="width: 190px;">Refresh</button>
+						<button ng-click="createField()" class="btn btn-sm btn-info" style="width: 190px;">Create Fields</button><hr style="width: 90%;"/>
+						<button ng-click="buyMeACoffee()" class="btn btn-sm btn-light" style="width: 385px;margin-top: 5px;">Buy Me a Coffee</button>
+						<br> <i id="creatingFields" class="loader"
+							style="color: red; display: none; font-size: 10px">Creating
+							Fields ...
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>
+					</div>
+		
+					<br>
+					<br>
+					
+					</div>
+					<br />
+					<div class="data" style="border: thin solid #0d11db00;">
+						<div class="row row6 resultData" style="display: none;">
+						<table id="fTable" class="table">
+							<tr style="background: #f4fcfe;">
+								<th>#</th>
+								<th>Field Name</th>
+								<th>Status</th>
+								<th>Status Code</th>
+							</tr>
+						</table>
+						</div>
+					</div>
+				</div>
+		
+			</div>
+	  </div>
+	  
+	</div>
+
+	
+</body>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="../js/lib/angular.min.js"></script>
+<script src="../js/lib/ui-bootstrap-tpls-2.5.0.min.js"></script>
+<script src="../js/app/app.js"></script>
+<script src="../js/app/UserController.js"></script>
+<script src="../js/app/UserService.js"></script>
+<link rel="stylesheet" href="../css/lib/bootstrap.min.css" />
+<link rel="stylesheet" href="../css/app/app.css" />
+</html>

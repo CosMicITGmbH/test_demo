@@ -1,0 +1,131 @@
+body{
+    background-color: #efefef;
+}
+span.spacing{
+    margin-right: 10px;
+}
+input.custom-width{
+    width: 200px;
+}
+input.spacing{
+    margin-right: 5px;
+}
+body {
+    background-color: white !important;
+} 	
+.mainsection {		
+    text-align: CENTER;
+    overflow-y: auto;
+    height: 100%;
+    padding-top: 30px;
+    
+}
+div.data {
+	width: 450px;
+    margin: auto;
+    border-radius: 5px;
+    border: thin solid #db0d0d;
+}
+.line {
+	margin-bottom: 20px;
+	height: 5px;
+    margin: 0 auto;
+    background: #3498db;
+   	width: 300px;
+}
+select {
+	width: 300px;
+    height: 38px;
+    padding-left: 20px;
+   }
+svg {
+    width: 15px;
+   }
+
+button.clearsession {
+    background: white;
+    height: 25px;
+    color: black;
+    padding: 0px 7px;
+    margin-top: 5px;
+}
+textarea {
+	width: 385px;
+  		height: 102px;
+   }
+.loader {
+       background: url(../js/lib/loader.gif);
+       background-repeat: no-repeat;
+       background-position: right;
+   }
+.container {
+   width: 100%;
+   padding-right: 0px;
+   padding-left: 0px;
+   height: 100%;
+}
+label {
+	color: grey;
+}
+table td { word-wrap:break-word;}
+table tr {
+    border-bottom: 0.2px solid #8080804d;
+}
+table th {
+    background: #f4fcfe;
+}
+.float-container {
+    border: 3px solid #fff;
+    display: flex;
+    justify-content: center;
+}
+
+.float-child {
+    width: 50%;
+    float: left;
+    border: 2px solid #f5f5f5;
+}  
+
+textarea , select, input{
+	border-color: #ddd;
+    border-radius: 3px;
+} 
+
+.pageheader {
+    background: #f4fcfe;
+    border-radius: 5px;
+    margin: 20px;
+    padding-top: 10px;
+}
+div.resultData{
+    width: 450px;
+    padding: 10px;
+    border: thin solid #db0d26ba;
+    border-radius: 5px;
+    margin: 0 auto;
+    display: grid;
+    justify-items: start;
+}
+div.section {
+    width: 385px;
+    margin: 0 auto;
+    display: grid;
+    justify-items: start;
+}
+.float-child > .loginscreenimage{
+	height: 100vh !important;
+}
+.login {
+	transform: translateY(25%);
+	height: auto !important;
+	padding-top: 0px !important;
+}
+.loginbutton {
+    width: 300px;
+    border-color: #3a9cd8;
+    border-radius: 4px;
+    background: #3a9cd8;
+    color: white;
+    height: 40px;
+    font-size: smaller;
+}
